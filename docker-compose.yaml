@@ -1,0 +1,11 @@
+version: "3.8"
+
+# Microfab: is a containerized Hyperledger Fabric runtime for use in development environments 
+services:
+  ibp-microfab:
+    image: ibmcom/ibp-microfab
+    container_name: ibp-microfab
+    environment:
+      - MICROFAB_CONFIG
+    ports:
+      - 8080:8080
