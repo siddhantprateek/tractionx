@@ -16,7 +16,7 @@
 - `KIND` `brew install kind`
 - `Docker`
 
-- Create a KIND cluster
+### Create a KIND cluster
 ```bash
 cd test-network-k8s
 ./network kind
