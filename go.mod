@@ -1,9 +1,10 @@
-module github.com/siddhantprateek/tractionx
+module tractionx
 
 go 1.20
 
 require (
 	github.com/hyperledger/fabric-contract-api-go v1.2.1
+	github.com/siddhantprateek/tractionx v0.0.0-20230806183747-1712c160cbad
 	github.com/stretchr/testify v1.8.4
 )
 
