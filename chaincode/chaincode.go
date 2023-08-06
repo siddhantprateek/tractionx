@@ -26,6 +26,39 @@ func (c *PropertyContract) PropertyExists(
 	return data != nil, nil
 }
 
+func (c *PropertyContract) CreateProperty(
+	ctx contractapi.TransactionContextInterface,
+	propertyId string,
+	plotNumber int,
+	builder string,
+	owner string,
+	currentPrice float32,
+	sellingPrice float32) error {
+
+	propertyExist, err := c.PropertyExists(ctx, propertyId)
+	if err != nil {
+		return err
+	}
+	if propertyExist {
+		return fmt.Errorf("the property %s already exist", propertyId)
+	}
+
+	property := models.Property{
+		ID:           propertyId,
+		PlotNumber:   plotNumber,
+		Builder:      builder,
+		OwnedBy:      owner,
+		CurrentPrice: currentPrice,
+		SellingPrice: sellingPrice,
+	}
+	propertyJSON, err := json.Marshal(property)
+	if err != nil {
+		return err
+	}
+
+	return ctx.GetStub().PutState(propertyId, propertyJSON)
+}
+
 func (c *PropertyContract) ReadProperty(
 	ctx contractapi.TransactionContextInterface,
 	id string,
@@ -72,4 +105,80 @@ func (c *PropertyContract) TransferProperty(
 		return "", err
 	}
 	return oldOwner, nil
+}
+
+// GetAllProperty returns all properties found in world state
+func (c *PropertyContract) GetAllProperty(
+	ctx contractapi.TransactionContextInterface,
+) ([]*models.Property, error) {
+	resultsIterator, err := ctx.GetStub().GetStateByRange("", "")
+	if err != nil {
+		return nil, err
+	}
+	defer resultsIterator.Close()
+
+	var properties []*models.Property
+	for resultsIterator.HasNext() {
+		queryResponse, err := resultsIterator.Next()
+		if err != nil {
+			return nil, err
+		}
+
+		var property models.Property
+		err = json.Unmarshal(queryResponse.Value, &property)
+		if err != nil {
+			return nil, err
+		}
+		properties = append(properties, &property)
+	}
+
+	return properties, nil
+}
+
+// DeleteProperty deletes an given property from the world state.
+func (c *PropertyContract) DeleteProperty(
+	ctx contractapi.TransactionContextInterface,
+	propertyId string) error {
+	propertyExist, err := c.PropertyExists(ctx, propertyId)
+	if err != nil {
+		return err
+	}
+	if !propertyExist {
+		return fmt.Errorf("the property %s does not exist", propertyId)
+	}
+	return ctx.GetStub().DelState(propertyId)
+}
+
+func (c *PropertyContract) UpdateProperty(
+	ctx contractapi.TransactionContextInterface,
+	propertyId string,
+	plotNumber int,
+	builder string,
+	owner string,
+	currentPrice float32,
+	sellingPrice float32) error {
+
+	propertyExist, err := c.PropertyExists(ctx, propertyId)
+	if err != nil {
+		return err
+	}
+	if !propertyExist {
+		return fmt.Errorf("the property %s does not exist", propertyId)
+	}
+
+	property := models.Property{
+		ID:           propertyId,
+		PlotNumber:   plotNumber,
+		Builder:      builder,
+		OwnedBy:      owner,
+		CurrentPrice: currentPrice,
+		SellingPrice: sellingPrice,
+	}
+
+	propertyJSON, err := json.Marshal(property)
+	if err != nil {
+		return err
+	}
+
+	return ctx.GetStub().PutState(propertyId, propertyJSON)
 }
