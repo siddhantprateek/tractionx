@@ -10,7 +10,7 @@ export MICROFAB_CONFIG='{
   ],
   "channels": [
     {
-      "name": "mango-channel",
+      "name": "property-channel",
       "endorsing_organizations": [
         "ProducersOrg",
         "SellersOrg"

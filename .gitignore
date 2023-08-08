@@ -27,3 +27,8 @@ build/
 .env
 bin/
 *.tgz
+
+_gateways
+_msp
+_wallets
+builders/

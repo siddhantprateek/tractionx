@@ -2,7 +2,7 @@ version: "3.8"
 
 # Microfab: is a containerized Hyperledger Fabric runtime for use in development environments 
 services:
-  ibp-microfab:
+  microfab:
     image: ibmcom/ibp-microfab
     container_name: ibp-microfab
     environment:

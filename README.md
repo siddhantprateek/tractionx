@@ -50,10 +50,23 @@ Launch the network and create a channel using the provided scripts:
 ./network channel create
 ```
 
+```bash
+peer lifecycle chaincode package <chaincode-package-name>.tgz \
+--path ./path/to/chaincode --lang golang --label <chaincode-package-label>
+
+peer lifecycle chaincode install <chaincode-package-name>.tgz
+
+# or
+peer lifecycle chaincode package property.tgz \ 
+--path ./contracts/ --lang golang --label property_1
+
+peer lifecycle chaincode install property.tgz
+```
+
 ## Author
 
 This project was authored by Siddhant Prateek Mahanayak. You can find more about the author on their [GitHub profile](github.com/siddhantprateek).
 
-Feel free to explore, contribute, and collaborate on the Tractionx project. If you have any questions or need assistance, don't hesitate to reach out to the author or the project's community.
+Feel free to explore, contribute, and collaborate on the Tractionx project. If you have any questions or need assistance, don't hesitate to reach out to the author.
 
 Happy coding!
