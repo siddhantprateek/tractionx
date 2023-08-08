@@ -63,6 +63,77 @@ peer lifecycle chaincode package property.tgz \
 peer lifecycle chaincode install property.tgz
 ```
 
+## Setting Up a Hyperledger Fabric Network with Microfab
+
+### Configure Microfab
+
+Create a file named `microfab-config.json` and define your network configuration:
+
+```json
+{
+  "port": 8080,
+  "endorsing_organizations": [
+    {
+      "name": "ProducersOrg"
+    },
+    {
+      "name": "SellersOrg"
+    }
+  ],
+  "channels": [
+    {
+      "name": "property-channel",
+      "endorsing_organizations": [
+        "ProducersOrg",
+        "SellersOrg"
+      ]
+    }
+  ]
+}
+```
+
+### Start Microfab
+
+Run the following commands to start Microfab using Docker Compose:
+
+```bash
+docker-compose up -d
+docker run -e MICROFAB_CONFIG -p 8080:8080 -d ibmcom/ibp-microfab
+```
+
+### Set Up Weft
+
+Run the following command to retrieve component information from Microfab and configure Weft:
+
+```bash
+curl -s http://console.127-0-0-1.nip.io:8080/ak/api/v1/components | weft microfab -w ./_wallets -p ./_gateways -m ./_msp -f
+```
+
+### Download Hyperledger Fabric
+
+Run the following command to download the Hyperledger Fabric binaries:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/hyperledger/fabric/main/scripts/install-fabric.sh | bash -s -- binary
+```
+
+Add Fabric binaries to your PATH and set the configuration path:
+
+```bash
+export PATH=$PATH:${PWD}/bin
+export FABRIC_CFG_PATH=${PWD}/config
+```
+
+### Set Environment Variables
+
+Set environment variables for your peer organization:
+
+```bash
+export CORE_PEER_LOCALMSPID=ProducersOrgMSP
+export CORE_PEER_MSPCONFIGPATH=${PWD}/_msp/ProducersOrg/producersorgadmin/msp
+export CORE_PEER_ADDRESS=producersorgpeer-api.127-0-0-1.nip.io:8080
+```
+
 ## Author
 
 This project was authored by Siddhant Prateek Mahanayak. You can find more about the author on their [GitHub profile](github.com/siddhantprateek).
