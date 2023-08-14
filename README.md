@@ -134,6 +134,37 @@ export CORE_PEER_MSPCONFIGPATH=${PWD}/_msp/ProducersOrg/producersorgadmin/msp
 export CORE_PEER_ADDRESS=producersorgpeer-api.127-0-0-1.nip.io:8080
 ```
 
+```bash
+./test-network-k8s/network up createChannel -c propertyChannel -ca
+```
+
+## Deploying Chaincode 
+
+```bash
+ ./test-network-k8s/network chaincode deploy property-transfer ./contracts
+```
+
+```bash
+./test-network-k8s/network chaincode invoke property-transfer '{"function":"CreateProperty", "Args": ["1", "125", "Martin", "Jeff", "50000", "55000"]}'
+
+export PAYLOAD='{
+  "function": "CreateProperty",
+  "Args": [
+    "1",
+    "125",
+    "Martin",
+    "Jeff",
+    "50000",
+    "55000"
+  ]
+}'
+```
+
+- Retrieve current chaincode version in Hyperledger Fabric
+```bash
+./test-network-k8s/network peer chaincode list --instantiated -C test-network 
+```
+
 ## Author
 
 This project was authored by Siddhant Prateek Mahanayak. You can find more about the author on their [GitHub profile](github.com/siddhantprateek).
