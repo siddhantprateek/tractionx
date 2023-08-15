@@ -1,6 +1,6 @@
 # Tractionx
 
-![](./assets/tractionx.png)
+![](./assets/tractionx_v.png)
 
 > TractionX is a sample real estate transaction platform that uses the Hyperledger Fabric Raft protocol for secure and efficient property transactions.
 
