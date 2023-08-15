@@ -136,12 +136,25 @@ export CORE_PEER_ADDRESS=producersorgpeer-api.127-0-0-1.nip.io:8080
 
 ```bash
 ./test-network-k8s/network up createChannel -c propertyChannel -ca
+
+# or
+
+./test-network/network.sh up createChannel -c propertych -ca
 ```
 
 ## Deploying Chaincode 
 
 ```bash
  ./test-network-k8s/network chaincode deploy property-transfer ./contracts
+
+#  or
+./test-network/network.sh deployCC -ccn propertych -c propertych  
+-ccp $PWD/contracts -ccl go
+
+-ccn: chaincode name
+-c: channel name
+-ccl: chaincode language 
+-ccp: chaincode package
 ```
 
 ```bash
