@@ -1,11 +1,13 @@
 # Tractionx
 
-TractionX is a sample real estate transaction platform that uses the Hyperledger Fabric Raft protocol for secure and efficient property transactions.
+![](./assets/tractionx.png)
+
+> TractionX is a sample real estate transaction platform that uses the Hyperledger Fabric Raft protocol for secure and efficient property transactions.
 
 
 ## Tech Stack
 
-- `Hyperledger Fabric`: A blockchain framework for developing enterprise-grade decentralized applications.
+- `Hyperledger Fabric`- `2.2`: A blockchain framework for developing enterprise-grade decentralized applications.
 - `Go`: The programming language used for developing the application logic.
 - `Kubernetes`: An open-source container orchestration platform for automating the deployment, scaling, and management of containerized applications.
 - `Docker`: A platform that automates the deployment of applications inside lightweight, portable containers.
@@ -148,7 +150,10 @@ export CORE_PEER_ADDRESS=producersorgpeer-api.127-0-0-1.nip.io:8080
  ./test-network-k8s/network chaincode deploy property-transfer ./contracts
 
 #  or
-./test-network/network.sh deployCC -ccn propertych -c propertych  
+./test-network/network.sh deployCC -ccn property -ccp \
+"/Users/siddhantprateek/Documents/projects/tractionx" -ccl go
+
+./test-network/network.sh deployCC -ccn propertych -c propertych \  
 -ccp $PWD/contracts -ccl go
 
 -ccn: chaincode name
