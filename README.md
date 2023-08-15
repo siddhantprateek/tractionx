@@ -7,7 +7,7 @@
 
 ## Tech Stack
 
-- `Hyperledger Fabric`- `2.2`: A blockchain framework for developing enterprise-grade decentralized applications.
+- `Hyperledger Fabric` `2.2`: A blockchain framework for developing enterprise-grade decentralized applications.
 - `Go`: The programming language used for developing the application logic.
 - `Kubernetes`: An open-source container orchestration platform for automating the deployment, scaling, and management of containerized applications.
 - `Docker`: A platform that automates the deployment of applications inside lightweight, portable containers.
