@@ -2,7 +2,8 @@ package main
 
 import (
 	"log"
-	chaincode "tractionx/contracts/chaincode"
+
+	chaincode "github.com/siddhantprateek/tractionx/contracts/chaincode"
 
 	"github.com/hyperledger/fabric-contract-api-go/contractapi"
 )

@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"tractionx/config"
-	handlers "tractionx/handlers"
+	config "github.com/siddhantprateek/tractionx/api/config"
+	handlers "github.com/siddhantprateek/tractionx/api/handlers"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"

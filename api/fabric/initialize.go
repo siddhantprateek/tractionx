@@ -9,7 +9,7 @@ import (
 	"os"
 	"path"
 
-	handlers "tractionx/handlers"
+	handlers "github.com/siddhantprateek/tractionx/api/handlers"
 
 	"github.com/hyperledger/fabric-gateway/pkg/client"
 	"github.com/hyperledger/fabric-gateway/pkg/identity"

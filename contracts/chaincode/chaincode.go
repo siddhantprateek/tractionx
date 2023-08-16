@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"tractionx/models"
+	"github.com/siddhantprateek/tractionx/contracts/models"
 
 	"github.com/hyperledger/fabric-contract-api-go/contractapi"
 )

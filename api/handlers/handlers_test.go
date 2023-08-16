@@ -4,7 +4,8 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
-	handlers "tractionx/handlers"
+
+	handlers "github.com/siddhantprateek/tractionx/api/handlers"
 
 	"github.com/labstack/echo/v4"
 	"github.com/stretchr/testify/assert"

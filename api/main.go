@@ -2,7 +2,8 @@ package main
 
 import (
 	"log"
-	api "tractionx/routes"
+
+	api "github.com/siddhantprateek/tractionx/api/routes"
 )
 
 func main() {

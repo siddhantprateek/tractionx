@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	models "tractionx/models"
+	models "github.com/siddhantprateek/tractionx/contracts/models"
 
 	"github.com/stretchr/testify/assert"
 )
